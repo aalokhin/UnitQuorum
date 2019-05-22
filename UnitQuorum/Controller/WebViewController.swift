@@ -12,21 +12,22 @@ import WebKit
 
 class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
 
-    var link : String! = nil
-    var myWebView: WKWebView!
+//    var link : String! = nil
+//    var myWebView: WKWebView!
 
-
+    @IBOutlet weak var wkView: WKWebView!
+    
     override func viewDidLoad() {
         
-        
-        super.viewDidLoad()
-        print("hi")
-        myWebView = WKWebView()
-        myWebView.navigationDelegate = self
-        view = myWebView
-        let url = URL(string: link)!
-        myWebView.load(URLRequest(url: url))
-        myWebView.allowsBackForwardNavigationGestures = true
+//
+//        super.viewDidLoad()
+//        print("hi")
+//        myWebView = WKWebView()
+//        myWebView.navigationDelegate = self
+//        view = myWebView
+//        let url = URL(string: link)!
+//        myWebView.load(URLRequest(url: url))
+//        myWebView.allowsBackForwardNavigationGestures = true
     }
 
 }
