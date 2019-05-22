@@ -28,4 +28,29 @@ class LoginViewController: UIViewController {
     }
  
 
+    @IBAction func webLoginButtonTapped(_ sender: UIButton) {
+
+        
+        let vc = getViewController() as! WebViewController
+        vc.link = "https://profile.intra.42.fr"
+    
+        self.navigationController?.pushViewController(vc, animated: true)
+  
+    }
+    
+    func getViewController() -> UIViewController
+    {
+        let storyboard = UIStoryboard.init(name: "WebViewDisplay", bundle: nil)
+       
+        let vc = storyboard.instantiateViewController(withIdentifier : "WebViewController") as! WebViewController
+        print("vc created")
+        return vc
+        
+//        let storyboard = UIStoryboard.init(name: storyboard.rawValue, bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: identifier)
+//
+//        return vc
+ 
+    }
+    
 }
