@@ -10,7 +10,7 @@
 				<string>myapp00</string>
 			</array>
 			<key>CFBundleURLName</key>
-			<string>com.myapp00.test</string>
+			<string>forum</string>
 		</dict>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>

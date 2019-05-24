@@ -43,6 +43,8 @@ class LoginViewController: UIViewController {
         let storyboard = UIStoryboard.init(name: "WebViewDisplay", bundle: nil)
        
         let vc = storyboard.instantiateViewController(withIdentifier : "WebViewController") as! WebViewController
+       // vc.delegate = self
+        
         print("vc created")
         return vc
         
