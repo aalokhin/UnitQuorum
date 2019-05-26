@@ -43,6 +43,9 @@
                                 <rect key="frame" x="69" y="342" width="186" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="plainLoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AzB-sy-I6c"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Cn-AD-jLr">
                                 <rect key="frame" x="82" y="451" width="180" height="31"/>
