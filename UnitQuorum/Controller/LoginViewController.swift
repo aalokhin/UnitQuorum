@@ -44,10 +44,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func plainLoginButtonTapped(_ sender: Any) {
         
-//        let authURL = URL(string: "https://api.intra.42.fr/oauth/authorize?client_id=\(Client.apiUid)")
-        
         let authURL = Client.authorizationURL
-        
         let callbackUrlScheme = "myapp00://forum"
         
         self.authSession = SFAuthenticationSession.init(url: authURL!, callbackURLScheme: callbackUrlScheme, completionHandler:{ (callBack:URL?, error:Error?) in
