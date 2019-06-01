@@ -25,9 +25,22 @@ class LoginViewController: UIViewController {
     var token = ""
     
     override func viewDidLoad() {
-        print("helolo")
-
-        super.viewDidLoad()
+        if (Client.sharedInstance.isSignedIn == false)
+        {
+            print("helolo newbie")
+            
+           
+        }
+       else
+        {
+            webLoginButton.isHidden = true
+            passwordTextField.isHidden = true
+            plainLoginButton.isHidden = true
+            xloginTextField.isHidden = true
+            print("helolo you are here already ")
+            
+        }
+         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -46,17 +59,20 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func plainLoginButtonTapped(_ sender: Any) {
-        print("helolo")
+        
         
         let authURL = Client.authorizationURL
-        let callbackUrlScheme = "myapp00://forum"
+        let callbackUrlScheme = Client.callbackUrlScheme
         
         self.authSession = SFAuthenticationSession.init(url: authURL!, callbackURLScheme: callbackUrlScheme, completionHandler:{ (callBack:URL?, error:Error?) in
-
             // handle auth response
             guard error == nil, let successURL = callBack else {
+                print("Some error in login")
                 return
             }
+            Client.sharedInstance.isSignedIn = true
+
+
             
             var oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
             
@@ -68,10 +84,10 @@ class LoginViewController: UIViewController {
                 print("No code received")
                 return;
             }
+
             
             self.code = code
-            
-              print ("here is your code : \(self.code)")
+            print ("here is your code : \(self.code)")
             self.getToken()
             
            
@@ -113,6 +129,7 @@ class LoginViewController: UIViewController {
         print("Token type: \(t.token_type)")
         print("Before: \(Client.sharedInstance.token)")
         Client.sharedInstance.setToken(t : t.access_token)
+       // Client.sharedInstance.isSignedIn = true
         print("After: \(Client.sharedInstance.token)")
 
     }

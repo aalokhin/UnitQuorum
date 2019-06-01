@@ -8,6 +8,7 @@
 
 import Foundation
 
+//JSON  IMplementation of oken data received
 class Token : Decodable{
     
     let access_token : String
