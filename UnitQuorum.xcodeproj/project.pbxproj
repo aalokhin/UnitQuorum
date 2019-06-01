@@ -14,7 +14,8 @@
 		EFD61BC422A2B44B00A62180 /* Topics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFD61BC322A2B44B00A62180 /* Topics.storyboard */; };
 		EFD61BC622A2B46200A62180 /* TopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD61BC522A2B46200A62180 /* TopicsViewController.swift */; };
 		EFD61BC822A2B68B00A62180 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD61BC722A2B68B00A62180 /* TopicCell.swift */; };
-		EFE177E222A27E10004649CD /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE177E122A27E10004649CD /* Token.swift */; };
+		EFD61BCA22A2B8E300A62180 /* TopicJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD61BC922A2B8E300A62180 /* TopicJSON.swift */; };
+		EFE177E222A27E10004649CD /* TokenJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE177E122A27E10004649CD /* TokenJSON.swift */; };
 		EFE69AF42295A5720012204C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE69AF32295A5720012204C /* Client.swift */; };
 		EFE69AF62295A9270012204C /* WebViewDisplay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFE69AF52295A9270012204C /* WebViewDisplay.storyboard */; };
 		EFE69AF82295AAFF0012204C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE69AF72295AAFF0012204C /* WebViewController.swift */; };
@@ -32,7 +33,8 @@
 		EFD61BC322A2B44B00A62180 /* Topics.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Topics.storyboard; sourceTree = "<group>"; };
 		EFD61BC522A2B46200A62180 /* TopicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsViewController.swift; sourceTree = "<group>"; };
 		EFD61BC722A2B68B00A62180 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopicCell.swift; path = UnitQuorum/Controller/TopicCell.swift; sourceTree = SOURCE_ROOT; };
-		EFE177E122A27E10004649CD /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		EFD61BC922A2B8E300A62180 /* TopicJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicJSON.swift; sourceTree = "<group>"; };
+		EFE177E122A27E10004649CD /* TokenJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenJSON.swift; sourceTree = "<group>"; };
 		EFE69AF32295A5720012204C /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		EFE69AF52295A9270012204C /* WebViewDisplay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewDisplay.storyboard; sourceTree = "<group>"; };
 		EFE69AF72295AAFF0012204C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +109,8 @@
 			children = (
 				5D0DCE422297E1A000D7846C /* GetTokenRequest.swift */,
 				5D0DCE462297E2B900D7846C /* ErrorJSON.swift */,
-				EFE177E122A27E10004649CD /* Token.swift */,
+				EFE177E122A27E10004649CD /* TokenJSON.swift */,
+				EFD61BC922A2B8E300A62180 /* TopicJSON.swift */,
 			);
 			path = 42Requests;
 			sourceTree = "<group>";
@@ -224,7 +227,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFE177E222A27E10004649CD /* Token.swift in Sources */,
+				EFD61BCA22A2B8E300A62180 /* TopicJSON.swift in Sources */,
+				EFE177E222A27E10004649CD /* TokenJSON.swift in Sources */,
 				5D1960C32295610400964AF0 /* LoginViewController.swift in Sources */,
 				EFF974B122944CF0006EE8C6 /* AppDelegate.swift in Sources */,
 				EFD61BC822A2B68B00A62180 /* TopicCell.swift in Sources */,
