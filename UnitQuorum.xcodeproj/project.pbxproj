@@ -11,6 +11,9 @@
 		5D0DCE472297E2B900D7846C /* ErrorJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DCE462297E2B900D7846C /* ErrorJSON.swift */; };
 		5D0DCE4922982E4600D7846C /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DCE4822982E4600D7846C /* Singleton.swift */; };
 		5D1960C32295610400964AF0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1960C22295610400964AF0 /* LoginViewController.swift */; };
+		EFD61BC422A2B44B00A62180 /* Topics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFD61BC322A2B44B00A62180 /* Topics.storyboard */; };
+		EFD61BC622A2B46200A62180 /* TopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD61BC522A2B46200A62180 /* TopicsViewController.swift */; };
+		EFD61BC822A2B68B00A62180 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD61BC722A2B68B00A62180 /* TopicCell.swift */; };
 		EFE177E222A27E10004649CD /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE177E122A27E10004649CD /* Token.swift */; };
 		EFE69AF42295A5720012204C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE69AF32295A5720012204C /* Client.swift */; };
 		EFE69AF62295A9270012204C /* WebViewDisplay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFE69AF52295A9270012204C /* WebViewDisplay.storyboard */; };
@@ -26,6 +29,9 @@
 		5D0DCE462297E2B900D7846C /* ErrorJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorJSON.swift; sourceTree = "<group>"; };
 		5D0DCE4822982E4600D7846C /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		5D1960C22295610400964AF0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EFD61BC322A2B44B00A62180 /* Topics.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Topics.storyboard; sourceTree = "<group>"; };
+		EFD61BC522A2B46200A62180 /* TopicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsViewController.swift; sourceTree = "<group>"; };
+		EFD61BC722A2B68B00A62180 /* TopicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopicCell.swift; path = UnitQuorum/Controller/TopicCell.swift; sourceTree = SOURCE_ROOT; };
 		EFE177E122A27E10004649CD /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		EFE69AF32295A5720012204C /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		EFE69AF52295A9270012204C /* WebViewDisplay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewDisplay.storyboard; sourceTree = "<group>"; };
@@ -63,6 +69,7 @@
 		5D1960BD2295608800964AF0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EFD61BC722A2B68B00A62180 /* TopicCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -73,6 +80,8 @@
 				5D1960C22295610400964AF0 /* LoginViewController.swift */,
 				EFE69AF52295A9270012204C /* WebViewDisplay.storyboard */,
 				EFE69AF72295AAFF0012204C /* WebViewController.swift */,
+				EFD61BC322A2B44B00A62180 /* Topics.storyboard */,
+				EFD61BC522A2B46200A62180 /* TopicsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -201,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFF974BB22944CF0006EE8C6 /* LaunchScreen.storyboard in Resources */,
+				EFD61BC422A2B44B00A62180 /* Topics.storyboard in Resources */,
 				EFF974B822944CF0006EE8C6 /* Assets.xcassets in Resources */,
 				EFF974B622944CF0006EE8C6 /* Main.storyboard in Resources */,
 				EFE69AF62295A9270012204C /* WebViewDisplay.storyboard in Resources */,
@@ -217,8 +227,10 @@
 				EFE177E222A27E10004649CD /* Token.swift in Sources */,
 				5D1960C32295610400964AF0 /* LoginViewController.swift in Sources */,
 				EFF974B122944CF0006EE8C6 /* AppDelegate.swift in Sources */,
+				EFD61BC822A2B68B00A62180 /* TopicCell.swift in Sources */,
 				EFE69AF42295A5720012204C /* Client.swift in Sources */,
 				5D0DCE472297E2B900D7846C /* ErrorJSON.swift in Sources */,
+				EFD61BC622A2B46200A62180 /* TopicsViewController.swift in Sources */,
 				5D0DCE4922982E4600D7846C /* Singleton.swift in Sources */,
 				5D0DCE432297E1A000D7846C /* GetTokenRequest.swift in Sources */,
 				EFE69AF82295AAFF0012204C /* WebViewController.swift in Sources */,

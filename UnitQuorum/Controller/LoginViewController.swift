@@ -25,6 +25,8 @@ class LoginViewController: UIViewController {
     var token = ""
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         if (Client.sharedInstance.isSignedIn == false)
         {
             print("helolo newbie")
@@ -40,7 +42,6 @@ class LoginViewController: UIViewController {
             print("helolo you are here already ")
             
         }
-         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -110,7 +111,10 @@ class LoginViewController: UIViewController {
                 }else if let d = data
                 {
                     self.parseToken(d : d)
-                    
+                    Client.sharedInstance.isSignedIn = true
+                    let vc = self.getTopicsViewController()
+
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
                 
             }
@@ -132,6 +136,15 @@ class LoginViewController: UIViewController {
        // Client.sharedInstance.isSignedIn = true
         print("After: \(Client.sharedInstance.token)")
 
+    }
+    
+    
+    func getTopicsViewController() -> UITableViewController {
+        let storyboard = UIStoryboard.init(name: "Topics", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier : "TopicsViewController") as! TopicsViewController
+        print("vc created")
+    
+        return vc
     }
         
     
