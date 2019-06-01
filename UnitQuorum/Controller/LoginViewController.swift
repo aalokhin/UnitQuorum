@@ -21,9 +21,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var webLoginButton: UIButton!
     
     var authSession: SFAuthenticationSession?
-
+    var code = ""
+    var token = ""
     
     override func viewDidLoad() {
+        print("helolo")
+
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -43,6 +46,7 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func plainLoginButtonTapped(_ sender: Any) {
+        print("helolo")
         
         let authURL = Client.authorizationURL
         let callbackUrlScheme = "myapp00://forum"
@@ -54,19 +58,65 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            let oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
+            var oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
             
             // Do what you now that you've got the token, or use the callBack URL
-            
-            print ("here is your token : -----------------")
+            print("here is your token : -----------------")
             print(oauthToken ?? "No OAuth Token")
             
+            guard let code = oauthToken?.value else {
+                print("No code received")
+                return;
+            }
+            
+            self.code = code
+            
+              print ("here is your code : \(self.code)")
+            self.getToken()
             
            
         })
         //Kick it off
         self.authSession?.start()
     }
+    
+    func getToken(){
+        
+        let url = URL(string: "https://api.intra.42.fr/oauth/token?client_id=\(Client.apiUid)&client_secret=\(Client.apiSecret)&\(self.code)")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+        request.httpBody = "grant_type=client_credentials".data(using: String.Encoding.utf8)
+       
+        DispatchQueue.global().async{
+            let task = URLSession.shared.dataTask(with: request) {data, response, error in
+                if let err = error {
+                    print("error occured \(err)")
+                }else if let d = data
+                {
+                    self.parseToken(d : d)
+                    
+                }
+                
+            }
+            task.resume()
+        }
+    }
+    
+    func parseToken(d : Data!)
+    {
+        let decoder = JSONDecoder()
+        // let tweets = [DecodableTweet]
+          let t = try! decoder.decode(Token.self, from: d)
+        print("Access: \(t.access_token)")
+        print("Created at: \(t.created_at)")
+        print("Expires in: \(t.expires_in)")
+        print("Token type: \(t.token_type)")
+        print("Before: \(Client.sharedInstance.token)")
+        Client.sharedInstance.setToken(t : t.access_token)
+        print("After: \(Client.sharedInstance.token)")
+
+    }
+        
     
     
     

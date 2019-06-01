@@ -21,6 +21,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate  {
 
         super.viewDidLoad()
         print("hi")
+        print("Singleton works: \(Client.sharedInstance.token)")
 
         startAuthorization()
     }
