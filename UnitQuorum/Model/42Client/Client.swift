@@ -34,6 +34,8 @@ final class Client {
     
     
     
+    
+    
     var isSignedIn : Bool
     
     

@@ -73,8 +73,8 @@ class TopicsViewController : UITableViewController
         for topic in t
         {
             print("Topic ID : \(topic.id)")
-            //print("Created at: \(topic.created_at)")
-            //print("Expires in: \(topic.updated_at)")
+            print("Created at: \(topic.created_at)")
+            print("Updated at: \(topic.updated_at)")
             print("Topic name: \(topic.name)")
         }
         
