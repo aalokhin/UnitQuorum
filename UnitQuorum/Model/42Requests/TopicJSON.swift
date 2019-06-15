@@ -25,7 +25,7 @@ class TopicJSON: Decodable {
         let id : Int
         let name : String
         let message: Message
-    
+        let author : Author
     
     let created_at : String
     let updated_at : String
@@ -39,6 +39,7 @@ class TopicJSON: Decodable {
            case created_at = "created_at"
            case updated_at = "updated_at"
             case message = "message"
+            case author = "author"
         }
     
     required init(from decoder: Decoder) throws {
@@ -53,7 +54,7 @@ class TopicJSON: Decodable {
         
         self.created_at = (try values.decode(String.self, forKey: .created_at))
         self.updated_at = (try values.decode(String.self, forKey: .updated_at))
-
+        self.author =  (try values.decode(Author.self, forKey: .author))
     }
         
     
@@ -96,14 +97,21 @@ class Content: Decodable {
 
 
 class Author: Decodable {
-    let id: Int?
-    let login: String?
-    let url: String?
+    let id: Int
+    let login: String
+    let url: String
     
     enum CodingKeys: String, CodingKey {
-        case id
-        case login
-        case url
+        case id = "id"
+        case login = "login"
+        case url = "url"
+    }
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.id = (try values.decode(Int.self, forKey: .id))
+        self.login = (try values.decode(String.self, forKey: .login))
+        self.url = (try values.decode(String.self, forKey: .url))
     }
 }
 
