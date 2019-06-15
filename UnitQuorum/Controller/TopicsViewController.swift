@@ -41,15 +41,11 @@ class TopicsViewController : UITableViewController
                 print(data)
             do {
                 
-                let json :  [NSDictionary] = (try JSONSerialization.jsonObject(with: data, options: []) as? [NSDictionary])!
-//
-                print(json)
-               // let i = 0
-//                for one in data
-//                {
+              //  let json :  [NSDictionary] = (try JSONSerialization.jsonObject(with: data, options: []) as? [NSDictionary])!
+               // print(json)
+
                     self.parseTopic(d : data)
                 
-//                }
             }
             catch {
                 print(error)
@@ -79,22 +75,14 @@ class TopicsViewController : UITableViewController
             print("Created at: \(topic.created_at)")
             print("Updated at: \(topic.updated_at)")
             print("Topic name: \(topic.name)")
+            //print("Topic message markdown :  \(topic.message.content.markdown)")
+            // print("Topic message html:  \(topic.message.content.html)")
         }
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
-//        if !self.topics.isEmpty {
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        } else {
-//            DispatchQueue.main.async {
-//                self.spinnerFooter.stopAnimating()
-//                self.tableView.tableFooterView = UIView()
-//            }
-//        }
+
         
     }
     
