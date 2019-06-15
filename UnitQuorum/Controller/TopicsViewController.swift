@@ -39,13 +39,14 @@ class TopicsViewController : UITableViewController
                 print(data)
             do {
                 
-//                let json :  [NSDictionary] = (try JSONSerialization.jsonObject(with: data, options: []) as? [NSDictionary])!
+                let json :  [NSDictionary] = (try JSONSerialization.jsonObject(with: data, options: []) as? [NSDictionary])!
 //
-//                print(json)
+                print(json)
                // let i = 0
 //                for one in data
 //                {
-                  self.parseTopic(d : data)
+                    self.parseTopic(d : data)
+                
 //                }
             }
             catch {
@@ -66,11 +67,16 @@ class TopicsViewController : UITableViewController
         let decoder = JSONDecoder()
         // let tweets = [DecodableTweet]
         
-        let t = try! decoder.decode(TopicJSON.self, from: d)
-        print("Access: \(t.id)")
-        print("Created at: \(t.created_at)")
-        print("Expires in: \(t.updated_at)")
-        print("Token type: \(t.name)")
+        //let topics = [TopicJSON]
+        
+        let t = try! decoder.decode([TopicJSON].self, from: d)
+        for topic in t
+        {
+            print("Topic ID : \(topic.id)")
+            //print("Created at: \(topic.created_at)")
+            //print("Expires in: \(topic.updated_at)")
+            print("Topic name: \(topic.name)")
+        }
         
     }
     
