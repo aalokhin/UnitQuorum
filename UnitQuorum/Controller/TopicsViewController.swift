@@ -72,6 +72,7 @@ class TopicsViewController : UITableViewController
         let t = try! decoder.decode([TopicJSON].self, from: d)
         for topic in t
         {
+            topics.append(topic)
             print("Topic ID : \(topic.id)")
             print("Created at: \(topic.created_at)")
             print("Updated at: \(topic.updated_at)")
@@ -81,17 +82,19 @@ class TopicsViewController : UITableViewController
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        print(topics.count)
+
+        return topics.count
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topicCell", for: indexPath)
-//        let tweet = tweets[indexPath.row]
-//        cell.textLabel?.text = "\(tweet.text)\n"
-//        cell.textLabel?.sizeToFit()
+        let topic = topics[indexPath.row]
+        cell.textLabel?.text = "\(topic.name)\n"
+        cell.textLabel?.sizeToFit()
 //
-//        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.numberOfLines = 0
         return cell
     }
     
