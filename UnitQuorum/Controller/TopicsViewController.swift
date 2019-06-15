@@ -16,6 +16,8 @@ class TopicsViewController : UITableViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.spinnerFooter.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 100)
+//        self.spinnerFooter.startAnimating()
         self.getTopics()
         print("hello from table twitter")
     }
@@ -79,11 +81,25 @@ class TopicsViewController : UITableViewController
             print("Topic name: \(topic.name)")
         }
         
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+//        if !self.topics.isEmpty {
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        } else {
+//            DispatchQueue.main.async {
+//                self.spinnerFooter.stopAnimating()
+//                self.tableView.tableFooterView = UIView()
+//            }
+//        }
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(topics.count)
-
         return topics.count
         
     }
