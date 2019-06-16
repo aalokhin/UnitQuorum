@@ -87,8 +87,6 @@ class FullTopicDisplayViewController: UIViewController  {
             print("Updated at: \(msg.updated_at)")
             print("msg cont: \(msg.content)")
             print("Author name: \(msg.author.login)")
-            //print("Topic message markdown :  \(topic.message.content.markdown)")
-            // print("Topic message html:  \(topic.message.content.html)")
         }
         
 //        DispatchQueue.main.async {
