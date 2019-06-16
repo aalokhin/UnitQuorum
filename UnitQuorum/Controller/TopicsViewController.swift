@@ -6,6 +6,13 @@
 //  Copyright © 2019 Anastasiia ALOKHINA. All rights reserved.
 //
 
+
+//  GET /v2/messages/graph(/on/:field(/by/:interval))
+//  GET /v2/topics/:topic_id/messages/:message_id/messages
+// GET /v2/topics/:topic_id/messages    }
+
+//"v2/topics/\(id)/messages?page[number]=\(pageNumber)&page[size]=\(pageSize)"
+
 import Foundation
 import UIKit
 
@@ -48,8 +55,8 @@ class TopicsViewController : UITableViewController
                 
             }
             catch {
-                print(error)
-                print("error in get_topics")
+               // print(error)
+                //print("error in get_topics")
             }
 //                DispatchQueue.main.async {
 //                    self.parseTopic(d : data)
@@ -71,11 +78,11 @@ class TopicsViewController : UITableViewController
         for topic in t
         {
             topics.append(topic)
-            print("Topic ID : \(topic.id)")
-            print("Created at: \(topic.created_at)")
-            print("Updated at: \(topic.updated_at)")
-            print("Topic name: \(topic.name)")
-            print("Author name: \(topic.author.login)")
+//            print("Topic ID : \(topic.id)")
+//            print("Created at: \(topic.created_at)")
+//            print("Updated at: \(topic.updated_at)")
+//            print("Topic name: \(topic.name)")
+//            print("Author name: \(topic.author.login)")
             //print("Topic message markdown :  \(topic.message.content.markdown)")
             // print("Topic message html:  \(topic.message.content.html)")
         }
@@ -100,6 +107,9 @@ class TopicsViewController : UITableViewController
 
 
         let vc = getViewController() as!  FullTopicDisplayViewController
+        //vc.topic = self.topics[indexPath.row]
+        vc.topicID = self.topics[indexPath.row].id
+
         self.navigationController?.pushViewController(vc, animated: true)
     }
 //
@@ -109,6 +119,8 @@ class TopicsViewController : UITableViewController
     {
         let storyboard = UIStoryboard.init(name: "FullTopicStoryboard", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier : "FullTopicDisplayViewController") as! FullTopicDisplayViewController
+         //vc.topic = topics[indexPath]
+        
         //print("DisaplyTopic VC created")
         return vc
     }
