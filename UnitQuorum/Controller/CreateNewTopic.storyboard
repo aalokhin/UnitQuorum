@@ -17,21 +17,37 @@
                     <view key="view" contentMode="scaleToFill" id="g21-Hv-Vyt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Topic's name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rpq-DG-LUM">
+                                <rect key="frame" x="24" y="101" width="328" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZkN-Om-huu">
+                                <rect key="frame" x="49" y="151" width="279" height="319"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5ib-uH-WpM"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Topic" id="utY-Ie-4lu">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jg2-gj-n5Q">
-                            <connections>
-                                <action selector="CancelTapped:" destination="fCX-m3-dtj" id="ZYf-TL-GEM"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jg2-gj-n5Q"/>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Q2w-Zx-PSA">
                             <connections>
                                 <action selector="SaveTapped:" destination="fCX-m3-dtj" id="ekd-Mb-jt9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="topicName" destination="rpq-DG-LUM" id="Jxc-yQ-yK0"/>
+                        <outlet property="topicText" destination="ZkN-Om-huu" id="abl-DX-5Dx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ymH-mc-pGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

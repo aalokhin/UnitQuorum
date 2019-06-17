@@ -7,3 +7,21 @@
 //
 
 import Foundation
+
+
+
+class TopicToSend : Encodable {
+    let name : String
+    
+    let content : String
+    
+    enum CodingKeys : String, CodingKey {
+        case name = "name"
+        case content = "content"
+    }
+    init(name : String, content : String)
+    {
+        self.name = name
+        self.content = content
+    }
+}
