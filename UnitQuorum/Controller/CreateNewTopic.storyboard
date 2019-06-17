@@ -37,7 +37,11 @@
                         <viewLayoutGuide key="safeArea" id="5ib-uH-WpM"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Topic" id="utY-Ie-4lu">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jg2-gj-n5Q"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jg2-gj-n5Q">
+                            <connections>
+                                <action selector="CancelButtonTapped:" destination="fCX-m3-dtj" id="1uP-Km-mrf"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Q2w-Zx-PSA">
                             <connections>
                                 <action selector="SaveTapped:" destination="fCX-m3-dtj" id="ekd-Mb-jt9"/>

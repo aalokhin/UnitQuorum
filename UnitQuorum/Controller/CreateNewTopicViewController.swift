@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CreateNewTopicViewController : UIViewController {
+class CreateNewTopicViewController : UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var topicText: UITextView!
     
@@ -26,9 +26,38 @@ class CreateNewTopicViewController : UIViewController {
         
         if (topicText.text != nil && topicName.text != "")
         {
-            let topic = TopicToSend(name : topicName.text!, content : topicText.text!)
-            print(topic.name)
-            print(topic.content)
+            let topic = TopicToSend(name : topicName.text!, content : topicText.text!, kind : "normal", author : 4)
+           
+            
+            let jsonEncoder = JSONEncoder()
+            do
+            {
+                let jsonData = try jsonEncoder.encode(topic)
+                print(jsonData)
+               
+                do
+                {
+                    let json = try? JSONSerialization.jsonObject(with: jsonData, options: [])
+                    print("************************** \(json) ************************")
+                    
+                }
+                catch{
+                    print("error")
+                }
+                
+                
+                
+            }
+            catch{
+                print("Error encoding")
+            }
+            
+
+            
+//            print(topic.name)
+//            print(topic.messages_attributes)
+//            print(topic.messages_attributes[0].content)
+//            print(topic.messages_attributes[0].author_id)
             print("saved")
             self.navigationController?.popViewController(animated: true)
         }
@@ -46,12 +75,20 @@ class CreateNewTopicViewController : UIViewController {
 
     }
     
-    @IBAction func CancelTapped(_ sender: UIBarButtonItem) {
-        print("cancel tapped")
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        print("in here FIrst responder works")
+//        self.topicText.becomeFirstResponder()
+//        return true
+//    }
+    
+   
+    
+    @IBAction func CancelButtonTapped(_ sender: UIBarButtonItem) {
+        print("cancel2 tapped")
         self.navigationController?.popViewController(animated: true)
     }
     
-    
 }
+
 
 
