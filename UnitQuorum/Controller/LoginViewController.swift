@@ -126,7 +126,7 @@ class LoginViewController: UIViewController {
     {
         let decoder = JSONDecoder()
         // let tweets = [DecodableTweet]
-          let t = try! decoder.decode(TokenJSON.self, from: d)
+        let t = try! decoder.decode(TokenJSON.self, from: d)
         print("Access: \(t.access_token)")
         print("Created at: \(t.created_at)")
         print("Expires in: \(t.expires_in)")

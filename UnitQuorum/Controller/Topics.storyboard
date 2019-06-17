@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Topics View Controller-->
+        <!--Topics-->
         <scene sceneID="QG7-is-uvl">
             <objects>
                 <tableViewController storyboardIdentifier="TopicsViewController" id="SJ4-Hl-4Ox" customClass="TopicsViewController" customModule="UnitQuorum" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,10 +32,35 @@
                             <outlet property="delegate" destination="SJ4-Hl-4Ox" id="u8b-fm-zQ5"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Topics" id="DVI-dI-nXq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="mWT-Oy-UFf">
+                            <connections>
+                                <action selector="CreateButtontapped:" destination="SJ4-Hl-4Ox" id="84G-Qf-5O7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUn-WV-4Kv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="124" y="-100"/>
+            <point key="canvasLocation" x="1063.2" y="-100.29985007496252"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HX6-3p-Lro">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Iqc-kr-7iN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kGq-41-mJ8">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SJ4-Hl-4Ox" kind="relationship" relationship="rootViewController" id="rhs-dm-hfM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xHW-5S-kkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="124" y="-100.29985007496252"/>
         </scene>
     </scenes>
 </document>

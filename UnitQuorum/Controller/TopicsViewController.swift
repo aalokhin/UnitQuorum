@@ -66,6 +66,11 @@ class TopicsViewController : UITableViewController
         session.resume()
     }
     
+    @IBAction func CreateButtontapped(_ sender: UIBarButtonItem) {
+        print("create button tapped")
+        let vc = openCreateTopicViewController() as!  CreateNewTopicViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func parseTopic(d : Data!)
     {
@@ -122,6 +127,13 @@ class TopicsViewController : UITableViewController
          //vc.topic = topics[indexPath]
         
         //print("DisaplyTopic VC created")
+        return vc
+    }
+    
+    func openCreateTopicViewController() -> UIViewController
+    {
+        let storyboard = UIStoryboard.init(name: "CreateNewTopic", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier : "CreateNewTopicViewController") as! CreateNewTopicViewController
         return vc
     }
     
