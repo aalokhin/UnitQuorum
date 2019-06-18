@@ -14,12 +14,13 @@ final class Client {
     
     static let apiUid = "a3e38e966c9817266d40eabd4dcdf82bdca4bed880f7da7c490a17f8658f41fd"
     static let apiSecret = "56fecc48f9aeeb77e9cfefad10d4ea3f0c08c005909a1327630984c8dbcc1d7b"
+     static let scope = "public forum"
     
     static let baseUrl = "https://api.intra.42.fr/"
     
     static let redirectURI = "myapp00://forum".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
     
-    static let scope = "public forum"
+   
     static let callbackUrlScheme =  "myapp00://forum"
     
     
@@ -32,7 +33,8 @@ final class Client {
     
     static let DateFormat = "dd.MM.yyyy HH:mm:ss"
     var isSignedIn : Bool
-    
+    var myId = 0
+    var myLogin = ""
     
     //============================================================SINGLETON============================================================
     static let sharedInstance = Client()

@@ -116,6 +116,7 @@ class LoginViewController: UIViewController {
             NSURLQueryItem(name: "client_secret", value : Client.apiSecret),
             NSURLQueryItem(name: "code", value: code),
             NSURLQueryItem(name: "redirect_uri", value: Client.redirectURI),
+            NSURLQueryItem(name: "scope", value: "forum")
             ]
         let urlComps = NSURLComponents(string: "https://api.intra.42.fr/oauth/token")!
         urlComps.queryItems = queryItems as [URLQueryItem]
@@ -130,6 +131,7 @@ class LoginViewController: UIViewController {
                 }else if let d = data
                 {
                     self.parseToken(d : d)
+                    
                     Client.sharedInstance.isSignedIn = true
                     let vc = self.getTopicsViewController()
                     
@@ -154,11 +156,63 @@ class LoginViewController: UIViewController {
         Client.sharedInstance.setToken(t : t.access_token)
         Client.sharedInstance.isSignedIn = true
         print("After: \(Client.sharedInstance.token)")
+        getMe()
+        
+        print("Client.sharedInstance.myId : \(Client.sharedInstance.myId)")
+        print("Client.sharedInstance.myLogin : \(Client.sharedInstance.myLogin)")
+
         
     
         
 
     }
+    
+    
+    
+    func getMe()
+    {
+        
+        print("************** GET meeeee *******")
+        let urlPath: String = "https://api.intra.42.fr/v2/me"
+        let url = URL(string : urlPath)
+        var request = URLRequest(url : url!)
+        request.httpMethod = "GET"
+        request.setValue("Bearer " + Client.sharedInstance.token, forHTTPHeaderField: "Authorization")
+        
+        let session = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+            if let response = response {
+                print("response received from me")
+                //print(response)
+            }
+            guard let data = data else {
+                print("no data received")
+                return
+            }
+            print(data)
+            do {
+                if let dic : NSDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
+                    print(dic)
+                    Client.sharedInstance.myLogin = dic.value(forKey: "login") as! String
+                    Client.sharedInstance.myId = dic.value(forKey: "id") as! Int
+                     print("login loaded :", Client.sharedInstance.myLogin, "with author id :", Client.sharedInstance.myId)
+                    
+                }
+//                let decoder = JSONDecoder()
+//                let t = try! decoder.decode(MeJSON.self, from: data)
+//                Client.sharedInstance.myId = t.id!
+//                Client.sharedInstance.myLogin = t.login!
+                
+            }
+            catch (let err) {
+                print(err)
+            }
+            
+        }
+        session.resume()
+    }
+    
+    
+    
     
     
     func getTopicsViewController() -> UITableViewController {

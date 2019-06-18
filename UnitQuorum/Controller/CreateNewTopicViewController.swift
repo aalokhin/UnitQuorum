@@ -22,53 +22,19 @@ class CreateNewTopicViewController : UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         print("Hello from Create Topic View!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        getMe()
+    
         
         
     }
     
-    func getMe()
-    {
-        
-        print("************** GET meeeee *******")
-        let urlPath: String = "https://api.intra.42.fr/v2/me"
-        let url = URL(string : urlPath)
-        var request = URLRequest(url : url!)
-        request.httpMethod = "GET"
-        request.setValue("Bearer " + Client.sharedInstance.token, forHTTPHeaderField: "Authorization")
-        
-        let session = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
-            if let response = response {
-                print("response received from me")
-                //print(response)
-            }
-            guard let data = data else {
-                  print("no data received")
-                return
-            }
-            print(data)
-            do {
-                if let dic : NSDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
-                                          print(dic)
-                    let login = dic.value(forKey: "login") as? String
-                    let author_id = dic.value(forKey: "id") as? Int
-                   // print("login loaded :", login!, "with author id :", author_id!)
-                }
-            }
-            catch (let err) {
-                print(err)
-            }
-
-        }
-        session.resume()
-    }
+  
     
     
     @IBAction func SaveTapped(_ sender: UIBarButtonItem) {
         
         if (topicText.text != nil && topicName.text != "")
         {
-            let topicRaw = TopicToSend(name : topicName.text!, content : topicText.text!, kind : "normal", author : 4)
+            let topicRaw = TopicToSend(name : topicName.text!, content : topicText.text!, kind : "normal", author : Client.sharedInstance.myId)
             let topic = TopicPostJSON(topic : topicRaw)
             sendTopicToServer(topic : topic)
             
@@ -100,22 +66,41 @@ class CreateNewTopicViewController : UIViewController, UITextFieldDelegate {
         do
         {
             
-            let jsonData = try jsonEncoder.encode(topic)
-            print(jsonData)
-            print("JSON data:")
+//            let queryItems = [
+//                NSURLQueryItem(name: "grant_type", value: "authorization_code"),
+//                NSURLQueryItem(name: "client_id", value: Client.apiUid),
+//                NSURLQueryItem(name: "client_secret", value : Client.apiSecret),
+//                NSURLQueryItem(name: "code", value: code),
+//                NSURLQueryItem(name: "redirect_uri", value: Client.redirectURI),
+//                ]
+//            let urlComps = NSURLComponents(string: "https://api.intra.42.fr/oauth/token")!
+//            urlComps.queryItems = queryItems as [URLQueryItem]
+//            let url = urlComps.url!
+//            var request = URLRequest(url: url)
+//            request.httpMethod = "POST"
+//
             
-            var request = URLRequest(url : URL(string : publishTopicURL)!)
-
-            request.setValue("Bearer \(Client.sharedInstance.token)", forHTTPHeaderField: "Authorization")
+            let queryItems = [NSURLQueryItem(name: "scope", value: "forum")]
+            let urlComps = NSURLComponents(string: "https://api.intra.42.fr/v2/topics")!
+            urlComps.queryItems = queryItems as [URLQueryItem]
+            let url = urlComps.url!
+            var request = URLRequest(url: url)
             request.httpMethod = "POST"
+            let jsonData = try jsonEncoder.encode(topic)
             request.httpBody = jsonData
             request.setValue("application/json", forHTTPHeaderField : "Content-Type")
+            request.setValue("Bearer \(Client.sharedInstance.token)", forHTTPHeaderField: "Authorization")
+           
+            print(jsonData)
+            print("JSON data: ")
             print("request: \(request)")
+        
+          // var request = URLRequest(url : URL(string : publishTopicURL)!)
 
-            
-            let json1 = try JSONSerialization.jsonObject(with: jsonData, options: [])
-            print(json1)
 //
+//            let json1 = try JSONSerialization.jsonObject(with: jsonData, options: [])
+//            print(json1)
+
             let session = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
                 if let response = response {
                     print("response received")
@@ -144,19 +129,9 @@ class CreateNewTopicViewController : UIViewController, UITextFieldDelegate {
                 //                }
             }
             session.resume()
-//
+
  //********************************************************************************
-            
-//            do
-//            {
-//                let json = try? JSONSerialization.jsonObject(with: jsonData, options: [])
-//
-//                print("************************** \(json) ************************")
-//
-//            }
-//            catch{
-//                print("error")
-//            }
+
        }
         catch{
             print("Error encoding")
