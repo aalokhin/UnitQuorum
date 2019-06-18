@@ -10,6 +10,7 @@ import Foundation
 
 
 
+
 class TopicToSend : Encodable {
     
     //required values

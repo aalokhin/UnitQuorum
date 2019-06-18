@@ -14,6 +14,8 @@
 		5D1D1FE922B7A09D001FE715 /* TopicToSend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D1FE822B7A09D001FE715 /* TopicToSend.swift */; };
 		5D1D1FEB22B7A7F3001FE715 /* CreateNewTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D1FEA22B7A7F3001FE715 /* CreateNewTopic.storyboard */; };
 		5D1D1FED22B7A82C001FE715 /* CreateNewTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D1FEC22B7A82C001FE715 /* CreateNewTopicViewController.swift */; };
+		5D1D1FEF22B7CE3D001FE715 /* TopicPostJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D1FEE22B7CE3D001FE715 /* TopicPostJSON.swift */; };
+		5DAF8F4622B8DEBD00263B12 /* MeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAF8F4522B8DEBD00263B12 /* MeJSON.swift */; };
 		EF71E71D22B66A7500A09FC1 /* MessageJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF71E71C22B66A7500A09FC1 /* MessageJSON.swift */; };
 		EF8B1CF222B5471A006200C8 /* FullTopicDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B1CF122B5471A006200C8 /* FullTopicDisplayViewController.swift */; };
 		EF8B1CF422B548A9006200C8 /* FullTopicStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF8B1CF322B548A9006200C8 /* FullTopicStoryboard.storyboard */; };
@@ -39,6 +41,8 @@
 		5D1D1FE822B7A09D001FE715 /* TopicToSend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicToSend.swift; sourceTree = "<group>"; };
 		5D1D1FEA22B7A7F3001FE715 /* CreateNewTopic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateNewTopic.storyboard; sourceTree = "<group>"; };
 		5D1D1FEC22B7A82C001FE715 /* CreateNewTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTopicViewController.swift; sourceTree = "<group>"; };
+		5D1D1FEE22B7CE3D001FE715 /* TopicPostJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPostJSON.swift; sourceTree = "<group>"; };
+		5DAF8F4522B8DEBD00263B12 /* MeJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeJSON.swift; sourceTree = "<group>"; };
 		EF71E71C22B66A7500A09FC1 /* MessageJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageJSON.swift; sourceTree = "<group>"; };
 		EF8B1CF122B5471A006200C8 /* FullTopicDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullTopicDisplayViewController.swift; sourceTree = "<group>"; };
 		EF8B1CF322B548A9006200C8 /* FullTopicStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FullTopicStoryboard.storyboard; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 				EFD61BC922A2B8E300A62180 /* TopicJSON.swift */,
 				EF71E71C22B66A7500A09FC1 /* MessageJSON.swift */,
 				5D1D1FE822B7A09D001FE715 /* TopicToSend.swift */,
+				5D1D1FEE22B7CE3D001FE715 /* TopicPostJSON.swift */,
+				5DAF8F4522B8DEBD00263B12 /* MeJSON.swift */,
 			);
 			path = 42Requests;
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 			files = (
 				5D1D1FED22B7A82C001FE715 /* CreateNewTopicViewController.swift in Sources */,
 				EFD61BCA22A2B8E300A62180 /* TopicJSON.swift in Sources */,
+				5DAF8F4622B8DEBD00263B12 /* MeJSON.swift in Sources */,
 				EF71E71D22B66A7500A09FC1 /* MessageJSON.swift in Sources */,
 				5D1D1FE922B7A09D001FE715 /* TopicToSend.swift in Sources */,
 				EFE177E222A27E10004649CD /* TokenJSON.swift in Sources */,
@@ -260,6 +267,7 @@
 				5D0DCE472297E2B900D7846C /* ErrorJSON.swift in Sources */,
 				EFD61BC622A2B46200A62180 /* TopicsViewController.swift in Sources */,
 				5D0DCE4922982E4600D7846C /* Singleton.swift in Sources */,
+				5D1D1FEF22B7CE3D001FE715 /* TopicPostJSON.swift in Sources */,
 				5D0DCE432297E1A000D7846C /* GetTokenRequest.swift in Sources */,
 				EFE69AF82295AAFF0012204C /* WebViewController.swift in Sources */,
 			);

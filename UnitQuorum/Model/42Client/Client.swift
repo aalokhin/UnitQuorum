@@ -31,11 +31,6 @@ final class Client {
     var token : String
     
     static let DateFormat = "dd.MM.yyyy HH:mm:ss"
-    
-    
-    
-    
-    
     var isSignedIn : Bool
     
     

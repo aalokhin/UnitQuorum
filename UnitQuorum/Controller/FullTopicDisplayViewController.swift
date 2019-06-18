@@ -25,6 +25,7 @@ class FullTopicDisplayViewController: UIViewController  {
         //print(topic.author.login)
         //print(topic.name)
         getMessages()
+        
     }
         
         
@@ -93,6 +94,9 @@ class FullTopicDisplayViewController: UIViewController  {
 //            self.reloadData()
 //        }
     }
+    
+   
+   //  GET /v2/me
     
 }
 

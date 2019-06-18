@@ -11,10 +11,10 @@ import Foundation
 class ErrorJSON: Error, Decodable
 {
     var error: String
-    var message: String
+    var error_description: String
     
     enum CodingKeys: String, CodingKey {
         case error = "error"
-        case message = "error_description"
+        case error_description = "error_description"
     }
 }

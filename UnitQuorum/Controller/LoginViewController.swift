@@ -91,18 +91,37 @@ class LoginViewController: UIViewController {
             print ("here is your code : \(self.code)")
             self.getToken()
             
+            
            
         })
         //Kick it off
         self.authSession?.start()
     }
     
+   
+    
     func getToken(){
         
-        let url = URL(string: "https://api.intra.42.fr/oauth/token?client_id=\(Client.apiUid)&client_secret=\(Client.apiSecret)&\(self.code)")
-        var request = URLRequest(url: url!)
+//        let url = URL(string: "https://api.intra.42.fr/oauth/token?client_id=\(Client.apiUid)&client_secret=\(Client.apiSecret)&\(self.code)")
+//        var request = URLRequest(url: url!)
+//        request.httpMethod = "POST"
+////        request.httpBody = "grant_type=client_credentials".data(using: String.Encoding.utf8)
+//        request.httpBody = "grant_type=client_credentials".data(using: String.Encoding.utf8)
+
+        
+        
+        let queryItems = [
+            NSURLQueryItem(name: "grant_type", value: "authorization_code"),
+            NSURLQueryItem(name: "client_id", value: Client.apiUid),
+            NSURLQueryItem(name: "client_secret", value : Client.apiSecret),
+            NSURLQueryItem(name: "code", value: code),
+            NSURLQueryItem(name: "redirect_uri", value: Client.redirectURI),
+            ]
+        let urlComps = NSURLComponents(string: "https://api.intra.42.fr/oauth/token")!
+        urlComps.queryItems = queryItems as [URLQueryItem]
+        let url = urlComps.url!
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.httpBody = "grant_type=client_credentials".data(using: String.Encoding.utf8)
        
         DispatchQueue.global().async{
             let task = URLSession.shared.dataTask(with: request) {data, response, error in
@@ -113,7 +132,7 @@ class LoginViewController: UIViewController {
                     self.parseToken(d : d)
                     Client.sharedInstance.isSignedIn = true
                     let vc = self.getTopicsViewController()
-
+                    
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 
@@ -130,11 +149,14 @@ class LoginViewController: UIViewController {
         print("Access: \(t.access_token)")
         print("Created at: \(t.created_at)")
         print("Expires in: \(t.expires_in)")
-        print("Token type: \(t.token_type)")
+        //print("Token type: \(t.token_type)")
         print("Before: \(Client.sharedInstance.token)")
         Client.sharedInstance.setToken(t : t.access_token)
-       // Client.sharedInstance.isSignedIn = true
+        Client.sharedInstance.isSignedIn = true
         print("After: \(Client.sharedInstance.token)")
+        
+    
+        
 
     }
     
@@ -146,6 +168,8 @@ class LoginViewController: UIViewController {
     
         return vc
     }
+    
+   
         
     
     
