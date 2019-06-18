@@ -18,15 +18,17 @@ class TopicToSend : Encodable {
     let name : String
     let kind : String
     let language_id : String
+    let tag_ids: [String]
     let messages_attributes : [MessagesAttributes]
-    
+    let cursus_ids : [String]
 //    let content : String
     
     enum CodingKeys : String, CodingKey {
         case name = "name"
         case kind = "kind"
         case messages_attributes = "messages_attributes"
-        
+        case tag_ids = "tag_ids"
+        case cursus_ids = "cursus_ids"
         
 //        case content = "content"
     }
@@ -37,6 +39,9 @@ class TopicToSend : Encodable {
         self.kind = kind
         self.language_id = "3"
         self.messages_attributes = [MessagesAttributes(content : content, author_id : author)]
+        self.tag_ids = ["7dfakjladfk", "8"]
+        self.cursus_ids = ["1"]
+        
         
 //        self.content = contenš
         
