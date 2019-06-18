@@ -66,36 +66,20 @@ class CreateNewTopicViewController : UIViewController, UITextFieldDelegate {
         do
         {
             
-//            let queryItems = [
-//                NSURLQueryItem(name: "grant_type", value: "authorization_code"),
-//                NSURLQueryItem(name: "client_id", value: Client.apiUid),
-//                NSURLQueryItem(name: "client_secret", value : Client.apiSecret),
-//                NSURLQueryItem(name: "code", value: code),
-//                NSURLQueryItem(name: "redirect_uri", value: Client.redirectURI),
-//                ]
-//            let urlComps = NSURLComponents(string: "https://api.intra.42.fr/oauth/token")!
-//            urlComps.queryItems = queryItems as [URLQueryItem]
-//            let url = urlComps.url!
-//            var request = URLRequest(url: url)
-//            request.httpMethod = "POST"
-//
-            
-            let queryItems = [NSURLQueryItem(name: "scope", value: "forum")]
-            let urlComps = NSURLComponents(string: "https://api.intra.42.fr/v2/topics")!
-            urlComps.queryItems = queryItems as [URLQueryItem]
-            let url = urlComps.url!
-            var request = URLRequest(url: url)
+
+            var request = URLRequest(url : URL(string : publishTopicURL)!)
+
             request.httpMethod = "POST"
             let jsonData = try jsonEncoder.encode(topic)
-            request.httpBody = jsonData
             request.setValue("application/json", forHTTPHeaderField : "Content-Type")
             request.setValue("Bearer \(Client.sharedInstance.token)", forHTTPHeaderField: "Authorization")
+            request.httpBody = jsonData
+
            
             print(jsonData)
             print("JSON data: ")
             print("request: \(request)")
         
-          // var request = URLRequest(url : URL(string : publishTopicURL)!)
 
 //
 //            let json1 = try JSONSerialization.jsonObject(with: jsonData, options: [])

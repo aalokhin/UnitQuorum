@@ -65,6 +65,7 @@ class LoginViewController: UIViewController {
         let authURL = Client.authorizationURL
         let callbackUrlScheme = Client.callbackUrlScheme
         
+        
         self.authSession = SFAuthenticationSession.init(url: authURL!, callbackURLScheme: callbackUrlScheme, completionHandler:{ (callBack:URL?, error:Error?) in
             // handle auth response
             guard error == nil, let successURL = callBack else {
@@ -191,7 +192,8 @@ class LoginViewController: UIViewController {
             print(data)
             do {
                 if let dic : NSDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
-                    print(dic)
+                   print(dic)
+                    
                     Client.sharedInstance.myLogin = dic.value(forKey: "login") as! String
                     Client.sharedInstance.myId = dic.value(forKey: "id") as! Int
                      print("login loaded :", Client.sharedInstance.myLogin, "with author id :", Client.sharedInstance.myId)
