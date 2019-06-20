@@ -76,9 +76,9 @@ class CreateNewTopicViewController : UIViewController, UITextFieldDelegate {
             request.httpBody = jsonData
 
            
-            print(jsonData)
-            print("JSON data: ")
-            print("request: \(request)")
+           // print(jsonData)
+            //print("JSON data: ")
+            //print("request: \(request)")
         
 
 //
@@ -98,7 +98,7 @@ class CreateNewTopicViewController : UIViewController, UITextFieldDelegate {
                 do {
 
                       let json = try JSONSerialization.jsonObject(with: data, options: [])
-                     print(json)
+                    // print(json)
 
 
 

@@ -45,7 +45,7 @@ class TopicsViewController : UITableViewController
                   //  print("no data received")
                     return
                 }
-                print(data)
+                //print(data)
             do {
                 
               //  let json :  [NSDictionary] = (try JSONSerialization.jsonObject(with: data, options: []) as? [NSDictionary])!

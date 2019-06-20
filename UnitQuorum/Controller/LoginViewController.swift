@@ -192,7 +192,7 @@ class LoginViewController: UIViewController {
             print(data)
             do {
                 if let dic : NSDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
-                   print(dic)
+                  // print(dic)
                     
                     Client.sharedInstance.myLogin = dic.value(forKey: "login") as! String
                     Client.sharedInstance.myId = dic.value(forKey: "id") as! Int

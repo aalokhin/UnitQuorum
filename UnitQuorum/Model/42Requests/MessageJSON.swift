@@ -15,6 +15,7 @@ class MessageJSON: Decodable {
     var replies: [MessageJSON]?
     let created_at : String
     let updated_at : String
+    let is_root : Bool
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -23,7 +24,9 @@ class MessageJSON: Decodable {
         case replies = "replies"
         case created_at = "created_at"
         case updated_at = "updated_at"
+        case is_root = "is_root"
     }
+    
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -32,6 +35,7 @@ class MessageJSON: Decodable {
         self.content = (try values.decode(String.self, forKey: .content))
         self.created_at =  (try values.decode(String.self, forKey: .created_at))
         self.updated_at =  (try values.decode(String.self, forKey: .updated_at))
+        self.is_root = (try values.decode(Bool.self, forKey: .is_root))
         self.replies = (try? values.decode([MessageJSON].self, forKey: .replies))
     }
 }

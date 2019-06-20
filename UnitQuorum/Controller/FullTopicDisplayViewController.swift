@@ -18,6 +18,13 @@ class FullTopicDisplayViewController: UIViewController  {
     var topicID : Int = -1
     var messages : [MessageJSON] = []
     
+    @IBOutlet weak var loginLbl: UILabel!
+    
+    @IBOutlet weak var dateLbl: UILabel!
+    @IBOutlet weak var topicTextLbl: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("hello from dispaly topic")
@@ -25,6 +32,7 @@ class FullTopicDisplayViewController: UIViewController  {
         //print(topic.author.login)
         //print(topic.name)
         getMessages()
+        
         
     }
         
@@ -57,10 +65,11 @@ class FullTopicDisplayViewController: UIViewController  {
                 print(data)
                 do {
                     
-//                      let json :  [NSDictionary] = (try JSONSerialization.jsonObject(with: data, options: []) as? [NSDictionary])!
-//                    print(json)
+                      let json :  [NSDictionary] = (try JSONSerialization.jsonObject(with: data, options: []) as? [NSDictionary])!
+                    //print(json)
 //
                     self.parseMessages(d : data)
+                    
                     
                 }
                 catch {
@@ -82,12 +91,30 @@ class FullTopicDisplayViewController: UIViewController  {
         let m = try! decoder.decode([MessageJSON].self, from: d)
         for msg in m
         {
+            if(msg.is_root == true)
+            {
+                DispatchQueue.main.async {
+                    self.loginLbl.text = msg.author.login
+                    self.dateLbl.text = msg.created_at
+                    self.topicTextLbl.text = msg.content
+                    self.loginLbl.sizeToFit()
+                    self.dateLbl.sizeToFit()
+                    self.topicTextLbl.sizeToFit()
+                }
+            }
+            
             messages.append(msg)
-            print("msg ID : \(msg.id)")
-            print("Created at: \(msg.created_at)")
-            print("Updated at: \(msg.updated_at)")
-            print("msg cont: \(msg.content)")
-            print("Author name: \(msg.author.login)")
+            print("is it a main topic?? \(msg.is_root)")
+//            print("msg ID : \(msg.id)")
+//            print("Created at: \(msg.created_at)")
+//            print("Updated at: \(msg.updated_at)")
+//            print("msg cont: \(msg.content)")
+//            print("Author name: \(msg.author.login)")
+        }
+        print("total number of messages  in topic ===========> \(messages.count)")
+        
+        if (!messages.isEmpty){
+        //loginLbl.text = messages[]
         }
         
 //        DispatchQueue.main.async {
