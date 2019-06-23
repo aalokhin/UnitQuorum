@@ -26,7 +26,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
 
+            print("Is signed is \(Client.sharedInstance.isSignedIn)")
         if (Client.sharedInstance.isSignedIn == false)
         {
             print("helolo newbie")
@@ -35,6 +37,7 @@ class LoginViewController: UIViewController {
         }
        else
         {
+            
             webLoginButton.isHidden = true
             passwordTextField.isHidden = true
             plainLoginButton.isHidden = true
@@ -79,8 +82,8 @@ class LoginViewController: UIViewController {
             var oauthToken = NSURLComponents(string: (successURL.absoluteString))?.queryItems?.filter({$0.name == "code"}).first
             
             // Do what you now that you've got the token, or use the callBack URL
-            print("here is your token : -----------------")
-            print(oauthToken ?? "No OAuth Token")
+           // print("here is your token : -----------------")
+           // print(oauthToken ?? "No OAuth Token")
             
             guard let code = oauthToken?.value else {
                 print("No code received")
@@ -89,7 +92,7 @@ class LoginViewController: UIViewController {
 
             
             self.code = code
-            print ("here is your code : \(self.code)")
+            //print ("here is your code : \(self.code)")
             self.getToken()
             
             
@@ -134,6 +137,12 @@ class LoginViewController: UIViewController {
                     self.parseToken(d : d)
                     
                     Client.sharedInstance.isSignedIn = true
+                    
+//                    self.webLoginButton.isHidden = true
+//                    self.passwordTextField.isHidden = true
+//                    self.plainLoginButton.isHidden = true
+//                    self.xloginTextField.isHidden = true
+                    
                     let vc = self.getTopicsViewController()
                     
                     self.navigationController?.pushViewController(vc, animated: true)
@@ -149,18 +158,19 @@ class LoginViewController: UIViewController {
         let decoder = JSONDecoder()
         // let tweets = [DecodableTweet]
         let t = try! decoder.decode(TokenJSON.self, from: d)
-        print("Access: \(t.access_token)")
-        print("Created at: \(t.created_at)")
-        print("Expires in: \(t.expires_in)")
+       // print("Access: \(t.access_token)")
+        //print("Created at: \(t.created_at)")
+        //print("Expires in: \(t.expires_in)")
         //print("Token type: \(t.token_type)")
-        print("Before: \(Client.sharedInstance.token)")
+       // print("Before: \(Client.sharedInstance.token)")
         Client.sharedInstance.setToken(t : t.access_token)
         Client.sharedInstance.isSignedIn = true
-        print("After: \(Client.sharedInstance.token)")
         getMe()
+       // print("After: \(Client.sharedInstance.token)")
+   
         
-        print("Client.sharedInstance.myId : \(Client.sharedInstance.myId)")
-        print("Client.sharedInstance.myLogin : \(Client.sharedInstance.myLogin)")
+        //print("Client.sharedInstance.myId : \(Client.sharedInstance.myId)")
+        //print("Client.sharedInstance.myLogin : \(Client.sharedInstance.myLogin)")
 
         
     
@@ -182,7 +192,7 @@ class LoginViewController: UIViewController {
         
         let session = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             if let response = response {
-                print("response received from me")
+                //print("response received from me")
                 //print(response)
             }
             guard let data = data else {
@@ -196,7 +206,7 @@ class LoginViewController: UIViewController {
                     
                     Client.sharedInstance.myLogin = dic.value(forKey: "login") as! String
                     Client.sharedInstance.myId = dic.value(forKey: "id") as! Int
-                     print("login loaded :", Client.sharedInstance.myLogin, "with author id :", Client.sharedInstance.myId)
+                    // print("login loaded :", Client.sharedInstance.myLogin, "with author id :", Client.sharedInstance.myId)
                     
                 }
 //                let decoder = JSONDecoder()

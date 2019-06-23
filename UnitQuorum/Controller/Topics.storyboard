@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,6 +32,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Topics" id="DVI-dI-nXq">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="5r2-vZ-Y8H">
+                            <connections>
+                                <action selector="LogOutButtonTapped:" destination="SJ4-Hl-4Ox" id="5IT-kc-dDo"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="mWT-Oy-UFf">
                             <connections>
                                 <action selector="CreateButtontapped:" destination="SJ4-Hl-4Ox" id="84G-Qf-5O7"/>
@@ -47,6 +51,7 @@
         <!--Navigation Controller-->
         <scene sceneID="HX6-3p-Lro">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xHW-5S-kkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Iqc-kr-7iN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kGq-41-mJ8">
@@ -58,7 +63,6 @@
                         <segue destination="SJ4-Hl-4Ox" kind="relationship" relationship="rootViewController" id="rhs-dm-hfM"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xHW-5S-kkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="124" y="-100.29985007496252"/>
         </scene>

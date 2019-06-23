@@ -154,5 +154,18 @@ class TopicsViewController : UITableViewController
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    @IBAction func LogOutButtonTapped(_ sender: UIBarButtonItem) {
+        print("Log Out Button Tapped")
+        Client.sharedInstance.token = ""
+        Client.sharedInstance.isSignedIn = false
+        Client.sharedInstance.myId = 0
+        Client.sharedInstance.myLogin = ""
+        navigationController?.viewControllers.forEach { ($0 as? LoginViewController)?.viewDidLoad()}
 
+        navigationController?.popViewController(animated: true)
+        
+        
+    }
+    
 }
