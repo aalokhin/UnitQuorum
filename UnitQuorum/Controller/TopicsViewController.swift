@@ -155,6 +155,23 @@ class TopicsViewController : UITableViewController
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func MyTopicsButtonTapped(_ sender: UIBarButtonItem) {
+        
+        print("Opened my Topics")
+        let vc = openMyTopicsViewController() as! MyTopicsViewController
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    
+        
+    }
+    
+    func openMyTopicsViewController() -> UIViewController
+    {
+        let storyboard = UIStoryboard.init(name: "MyTopics", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier : "MyTopicsViewController") as! MyTopicsViewController
+        return vc
+    }
+    
     @IBAction func LogOutButtonTapped(_ sender: UIBarButtonItem) {
         print("Log Out Button Tapped")
         Client.sharedInstance.token = ""

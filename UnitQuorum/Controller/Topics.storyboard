@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -37,11 +38,18 @@
                                 <action selector="LogOutButtonTapped:" destination="SJ4-Hl-4Ox" id="5IT-kc-dDo"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="mWT-Oy-UFf">
-                            <connections>
-                                <action selector="CreateButtontapped:" destination="SJ4-Hl-4Ox" id="84G-Qf-5O7"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="compose" id="mWT-Oy-UFf">
+                                <connections>
+                                    <action selector="CreateButtontapped:" destination="SJ4-Hl-4Ox" id="84G-Qf-5O7"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="My Topics" id="RrZ-oz-3g9">
+                                <connections>
+                                    <action selector="MyTopicsButtonTapped:" destination="SJ4-Hl-4Ox" id="6lD-qG-8f3"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUn-WV-4Kv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -51,7 +59,6 @@
         <!--Navigation Controller-->
         <scene sceneID="HX6-3p-Lro">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xHW-5S-kkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Iqc-kr-7iN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kGq-41-mJ8">
@@ -63,6 +70,7 @@
                         <segue destination="SJ4-Hl-4Ox" kind="relationship" relationship="rootViewController" id="rhs-dm-hfM"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xHW-5S-kkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="124" y="-100.29985007496252"/>
         </scene>
