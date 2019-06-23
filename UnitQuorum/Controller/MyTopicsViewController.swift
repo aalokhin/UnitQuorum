@@ -14,6 +14,8 @@ class MyTopicsViewController : UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
+        tableView.delegate = self
+        tableView.dataSource = self
         
         super.viewDidLoad()
         print("Hi from this view controller!")
@@ -30,13 +32,23 @@ extension MyTopicsViewController: UITableViewDelegate, UITableViewDataSource {
         print("numberOfRowsInSection")
         return  5
     }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        print("cellForRowAt1")
+//       let cell = tableView.dequeueReusableCell(withIdentifier: "topicCell", for: indexPath)
+//        //cell.textLabel?.sizeToFit()
+//        print("cellForRowAt2")
+//        cell.textLabel?.text = "lalala"
+//        return cell
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cellForRowAt1")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "topicCell", for: indexPath)
-        //cell.textLabel?.sizeToFit()
-        print("cellForRowAt2")
+           print("cellForRowAt1")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+       // let topic = topics[indexPath.row]
         cell.textLabel?.text = "lalala"
+
+        cell.textLabel?.numberOfLines = 0
         return cell
     }
     
