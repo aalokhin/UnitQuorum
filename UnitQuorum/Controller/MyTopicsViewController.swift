@@ -23,6 +23,29 @@ class MyTopicsViewController : UIViewController {
 }
 
 
+extension MyTopicsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("numberOfRowsInSection")
+        return  5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("cellForRowAt1")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "topicCell", for: indexPath)
+        //cell.textLabel?.sizeToFit()
+        print("cellForRowAt2")
+        cell.textLabel?.text = "lalala"
+        return cell
+    }
+    
+    
+    
+    
+}
+
+
 //extension MyTopicsViewController: UITableViewDelegate, UITableViewDataSource {
 //    
 //}
