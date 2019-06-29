@@ -105,15 +105,7 @@ class LoginViewController: UIViewController {
    
     
     func getToken(){
-        
-//        let url = URL(string: "https://api.intra.42.fr/oauth/token?client_id=\(Client.apiUid)&client_secret=\(Client.apiSecret)&\(self.code)")
-//        var request = URLRequest(url: url!)
-//        request.httpMethod = "POST"
-////        request.httpBody = "grant_type=client_credentials".data(using: String.Encoding.utf8)
-//        request.httpBody = "grant_type=client_credentials".data(using: String.Encoding.utf8)
 
-        
-        
         let queryItems = [
             NSURLQueryItem(name: "grant_type", value: "authorization_code"),
             NSURLQueryItem(name: "client_id", value: Client.apiUid),
@@ -135,14 +127,18 @@ class LoginViewController: UIViewController {
                 }else if let d = data
                 {
                     self.parseToken(d : d)
+//  *****************************>>>>>>>>>>>>>>> I don't kmow how to synchronize threads!!!!!!!!!!!!!!!!!
+                    
+                    
+                    
+//                    if (Client.sharedInstance.myLogin == "" ||  Client.sharedInstance.myId == 0 || Client.sharedInstance.token == ""){
+//                        self.callErrorWithCustomMessage(message: "Could't obtain user's data/token")
+//
+//                        return
+//                    }
                     
                     Client.sharedInstance.isSignedIn = true
-                    
-//                    self.webLoginButton.isHidden = true
-//                    self.passwordTextField.isHidden = true
-//                    self.plainLoginButton.isHidden = true
-//                    self.xloginTextField.isHidden = true
-                    
+                 
                     let vc = self.getTopicsViewController()
                     
                     self.navigationController?.pushViewController(vc, animated: true)
@@ -153,80 +149,24 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func parseToken(d : Data!)
-    {
+    func parseToken(d : Data!){
         let decoder = JSONDecoder()
-        // let tweets = [DecodableTweet]
-        let t = try! decoder.decode(TokenJSON.self, from: d)
-       // print("Access: \(t.access_token)")
-        //print("Created at: \(t.created_at)")
-        //print("Expires in: \(t.expires_in)")
-        //print("Token type: \(t.token_type)")
-       // print("Before: \(Client.sharedInstance.token)")
+        guard let t = try? decoder.decode(TokenJSON.self, from: d) else {
+            print("error decoding token")
+            callErrorWithCustomMessage(message : "Errror decoding token!")
+            return
+        }
         Client.sharedInstance.setToken(t : t.access_token)
         Client.sharedInstance.isSignedIn = true
         getMe()
-       // print("After: \(Client.sharedInstance.token)")
-   
-        
-        //print("Client.sharedInstance.myId : \(Client.sharedInstance.myId)")
-        //print("Client.sharedInstance.myLogin : \(Client.sharedInstance.myLogin)")
-
-        
-    
-        
+       
 
     }
     
     
     
-    func getMe()
-    {
-        
-        print("************** GET meeeee *******")
-        let urlPath: String = "https://api.intra.42.fr/v2/me"
-        let url = URL(string : urlPath)
-        var request = URLRequest(url : url!)
-        request.httpMethod = "GET"
-        request.setValue("Bearer " + Client.sharedInstance.token, forHTTPHeaderField: "Authorization")
-        
-        let session = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
-            if let response = response {
-                //print("response received from me")
-                //print(response)
-            }
-            guard let data = data else {
-                print("no data received")
-                return
-            }
-            print(data)
-            do {
-                if let dic : NSDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
-                  // print(dic)
-                    
-                    Client.sharedInstance.myLogin = dic.value(forKey: "login") as! String
-                    Client.sharedInstance.myId = dic.value(forKey: "id") as! Int
-                    // print("login loaded :", Client.sharedInstance.myLogin, "with author id :", Client.sharedInstance.myId)
-                    
-                }
-//                let decoder = JSONDecoder()
-//                let t = try! decoder.decode(MeJSON.self, from: data)
-//                Client.sharedInstance.myId = t.id!
-//                Client.sharedInstance.myLogin = t.login!
-                
-            }
-            catch (let err) {
-                print(err)
-            }
-            
-        }
-        session.resume()
-    }
     
-    
-    
-    
-    
+
     func getTopicsViewController() -> UITableViewController {
         let storyboard = UIStoryboard.init(name: "Topics", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier : "TopicsViewController") as! TopicsViewController
@@ -234,11 +174,6 @@ class LoginViewController: UIViewController {
     
         return vc
     }
-    
-   
-        
-    
-    
     
     func getViewController() -> UIViewController
     {
@@ -249,3 +184,98 @@ class LoginViewController: UIViewController {
     }
     
 }
+
+
+extension LoginViewController{
+    
+    func getMe()
+    {
+        
+        print("************** GET meeeee *******")
+        
+        let urlPath: String = "https://api.intra.42.fr/v2/me"
+        let url = URL(string : urlPath)
+        var request = URLRequest(url : url!)
+        request.httpMethod = "GET"
+        request.setValue("Bearer " + Client.sharedInstance.token, forHTTPHeaderField: "Authorization")
+        
+        let session = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+            if response == nil{
+                self.callErrorWithCustomMessage(message: "No response in Login Controller received :c")
+                return
+            }
+            
+            guard let data = data else {
+                print("no data received")
+                self.callErrorWithCustomMessage(message: "No data received :c")
+                return
+            }
+            
+            print(data)
+            do {
+                // print("*******************************************  DEBUG  *********************************************************")
+                //data = "any string".data(using: .utf8)!
+                // print("*******************************************  DEBUG  *********************************************************")
+                
+                guard let dic : NSDictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary else
+                {
+                    print("no data received")
+                    self.callErrorWithCustomMessage(message: "Error deserializing your topic. Somthing went wrong")
+                    return ;
+                }
+                guard let login = dic.value(forKey: "login"), let myId = dic.value(forKey: "id")
+                    else {
+                        print("Couldn't get user's data")
+                        self.callErrorWithCustomMessage(message: "Couldn't get login")
+                        return
+                }
+                Client.sharedInstance.myLogin = login as! String
+                Client.sharedInstance.myId = myId as! Int
+            }
+            catch (let err) {
+                print("Error i getting user's info")
+                self.callError(error: err as NSError)
+            }
+            
+        }
+        session.resume()
+    }
+    
+    
+    
+    func callErrorWithCustomMessage(message : String) {
+        
+        let alert = UIAlertController(
+            title : "Error",
+            message : message,
+            preferredStyle : UIAlertControllerStyle.alert
+        );
+        alert.addAction(UIAlertAction(title: "allright, thank you", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func callError(error: NSError) {
+        
+        let alert = UIAlertController(
+            title: "Error",
+            message: error.localizedDescription,
+            preferredStyle: UIAlertControllerStyle.alert
+        );
+        alert.addAction(UIAlertAction(title: "allright, thank you", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+}
+
+
+
+
+//        let url = URL(string: "https://api.intra.42.fr/oauth/token?client_id=\(Client.apiUid)&client_secret=\(Client.apiSecret)&\(self.code)")
+//        var request = URLRequest(url: url!)
+//        request.httpMethod = "POST"
+////        request.httpBody = "grant_type=client_credentials".data(using: String.Encoding.utf8)
+//        request.httpBody = "grant_type=client_credentials".data(using: String.Encoding.utf8)
+
+
+

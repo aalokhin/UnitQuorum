@@ -29,6 +29,7 @@
 		EFE69AF42295A5720012204C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE69AF32295A5720012204C /* Client.swift */; };
 		EFE69AF62295A9270012204C /* WebViewDisplay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFE69AF52295A9270012204C /* WebViewDisplay.storyboard */; };
 		EFE69AF82295AAFF0012204C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE69AF72295AAFF0012204C /* WebViewController.swift */; };
+		EFEE549522C77A6500C06B20 /* PostMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEE549422C77A6500C06B20 /* PostMessage.swift */; };
 		EFF974B122944CF0006EE8C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF974B022944CF0006EE8C6 /* AppDelegate.swift */; };
 		EFF974B622944CF0006EE8C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFF974B422944CF0006EE8C6 /* Main.storyboard */; };
 		EFF974B822944CF0006EE8C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFF974B722944CF0006EE8C6 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		EFE69AF32295A5720012204C /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		EFE69AF52295A9270012204C /* WebViewDisplay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewDisplay.storyboard; sourceTree = "<group>"; };
 		EFE69AF72295AAFF0012204C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		EFEE549422C77A6500C06B20 /* PostMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMessage.swift; sourceTree = "<group>"; };
 		EFF974AD22944CF0006EE8C6 /* UnitQuorum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitQuorum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFF974B022944CF0006EE8C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFF974B522944CF0006EE8C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,7 +82,6 @@
 		5D1960BC2295605A00964AF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5D1960C6229578BB00964AF0 /* 42Response */,
 				5D1960C1229560D000964AF0 /* 42Requests */,
 				5D1960C0229560C000964AF0 /* 42Client */,
 				5D1960BF229560AC00964AF0 /* Data */,
@@ -141,15 +142,9 @@
 				5D1D1FE822B7A09D001FE715 /* TopicToSend.swift */,
 				5D1D1FEE22B7CE3D001FE715 /* TopicPostJSON.swift */,
 				5DAF8F4522B8DEBD00263B12 /* MeJSON.swift */,
+				EFEE549422C77A6500C06B20 /* PostMessage.swift */,
 			);
 			path = 42Requests;
-			sourceTree = "<group>";
-		};
-		5D1960C6229578BB00964AF0 /* 42Response */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = 42Response;
 			sourceTree = "<group>";
 		};
 		EFF974A422944CF0006EE8C6 = {
@@ -264,6 +259,7 @@
 				5D1D1FED22B7A82C001FE715 /* CreateNewTopicViewController.swift in Sources */,
 				EFD61BCA22A2B8E300A62180 /* TopicJSON.swift in Sources */,
 				5DAF8F4622B8DEBD00263B12 /* MeJSON.swift in Sources */,
+				EFEE549522C77A6500C06B20 /* PostMessage.swift in Sources */,
 				EF71E71D22B66A7500A09FC1 /* MessageJSON.swift in Sources */,
 				5D1D1FE922B7A09D001FE715 /* TopicToSend.swift in Sources */,
 				EFE177E222A27E10004649CD /* TokenJSON.swift in Sources */,

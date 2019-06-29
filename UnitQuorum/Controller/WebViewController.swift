@@ -75,38 +75,3 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate  {
     
 }
 
-//
-//
-//extension WebViewController : {
-//
-//
-//
-//
-//
-//}
-//
-//
-////        GetTokenRequest().request(contactId: Client.apiUid, secretKey: Client.apiSecret, code: code, state: state) { (model, error) in
-//            print("Token created at \(model?.createdAt?.toString(format: Constants.fullDateFormat) ?? ""), expires in \(model?.expiresIn ?? 0) seconds")
-//            if let token = model?.token {
-//                DataSingleton.shared.token = token
-//                DispatchQueue.main.async {
-//                    self.delegate?.isSignIn()
-//                }
-//            }
-//        }
-//        
-//        
-//    }
-//    
-//
-// }
-
-//
-//static func getToken(clientId: String, clientSecret: String, code: String, state: String) -> String {
-//    return "oauth/token?grant_type=authorization_code&client_id=\(clientId)&client_secret=\(clientSecret)&code=\(code)&redirect_uri=\(Constants.redirectURI)&state=\(state)"
-//}
-//
-//static func authorize(clientId: String) -> String {
-//    return "oauth/authorize?client_id=\(clientId)&redirect_uri=\(Constants.redirectURI)&scope=\(Constants.scope)&state=\(Constants.state)&response_type=code"
-//}

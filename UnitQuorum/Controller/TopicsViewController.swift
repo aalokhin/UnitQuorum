@@ -23,19 +23,31 @@ class TopicsViewController : UITableViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.spinnerFooter.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 100)
-//        self.spinnerFooter.startAnimating()
-        self.getTopics()
-        print("hello from table twitter")
+        if (Client.sharedInstance.myLogin == "" ||  Client.sharedInstance.myId == 0 || Client.sharedInstance.token == ""){
+            Client.sharedInstance.token = ""
+            Client.sharedInstance.isSignedIn = false
+            Client.sharedInstance.myId = 0
+            Client.sharedInstance.myLogin = ""
+            let alert = UIAlertController(title: "Error", message: "Could't obtain user's data/token", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                self.navigationController?.viewControllers.forEach { ($0 as? LoginViewController)?.viewDidLoad()}
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+            } else {
+                self.getTopics()
+                print("hello from topics list Intra")
+            }
     }
     
-    func getTopics(){
+    func getTopics() {
         let urlPath: String = "https://api.intra.42.fr/v2/topics"
         let url = URL(string: urlPath)
         let request: NSMutableURLRequest = NSMutableURLRequest(url: url!)
         request.httpMethod = "GET"
         request.setValue("Bearer " + Client.sharedInstance.token, forHTTPHeaderField: "Authorization")
-        
+
         let session = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             if let response = response {
                 print("response received")
@@ -50,7 +62,7 @@ class TopicsViewController : UITableViewController
                 
               //  let json :  [NSDictionary] = (try JSONSerialization.jsonObject(with: data, options: []) as? [NSDictionary])!
                // print(json)
-
+                
                     self.parseTopic(d : data)
                 
             }
@@ -142,12 +154,15 @@ class TopicsViewController : UITableViewController
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "topicCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "topicCell", for: indexPath) as! TopicCell
         let topic = topics[indexPath.row]
-        cell.textLabel?.text = "\(topic.author.login): \(topic.name) created on \(topic.created_at)\n"
-        cell.textLabel?.sizeToFit()
-//
-        cell.textLabel?.numberOfLines = 0
+        cell.authorLbl.text = topic.author.login
+        cell.dateLbl.text = topic.created_at.toDate()?.toString()
+        cell.topicLbl.text = topic.name
+        //cell.textLabel?.text = "\(topic.author.login): \(topic.name) created on \(topic.created_at)\n"
+        ///cell.textLabel?.sizeToFit()
+        //cell.textLabel?.numberOfLines = 0
+        cell.designSelf()
         return cell
     }
     
@@ -179,10 +194,33 @@ class TopicsViewController : UITableViewController
         Client.sharedInstance.myId = 0
         Client.sharedInstance.myLogin = ""
         navigationController?.viewControllers.forEach { ($0 as? LoginViewController)?.viewDidLoad()}
-
         navigationController?.popViewController(animated: true)
-        
-        
     }
     
+}
+
+
+extension TopicsViewController {
+    func callErrorWithCustomMessage(message : String) {
+        
+        let alert = UIAlertController(
+            title : "Error",
+            message : message,
+            preferredStyle : UIAlertControllerStyle.alert
+        );
+        alert.addAction(UIAlertAction(title: "allright, thank you", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func callError(error: NSError) {
+        
+        let alert = UIAlertController(
+            title: "Error",
+            message: error.localizedDescription,
+            preferredStyle: UIAlertControllerStyle.alert
+        );
+        alert.addAction(UIAlertAction(title: "allright, thank you", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
